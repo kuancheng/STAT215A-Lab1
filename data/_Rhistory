@@ -1,0 +1,512 @@
+games <- rbinom(max.turns, 1, prob.win)
+for (turn in 1:max.turns){
+if(games[turn]){
+current.wealth <- current.wealth + bet
+bet <- bet.FUN(current.wealth, bet)
+} else{
+current.wealth <- current.wealth - bet
+bet <- bet.FUN(current.wealth, -bet)
+}
+if(current.welath < 0) break
+}
+return(current.wealth - init.welath)
+}
+outcomes <- replicate(1000, gamble(betFUN))
+outcomes <- replicate(1000, gamble(betFun))
+gamble <- function(bet.FUN, init.wealth=50, prob.win=0.52, max.turns=25) {
+current.wealth <- init.wealth
+bet <- bet.FUN(current.wealth, 0)
+games <- rbinom(max.turns, 1, prob.win)
+for (turn in 1:max.turns){
+if(games[turn]){
+current.wealth <- current.wealth + bet
+bet <- bet.FUN(current.wealth, bet)
+} else{
+current.wealth <- current.wealth - bet
+bet <- bet.FUN(current.wealth, -bet)
+}
+if(current.wealth < 0) break
+}
+return(current.wealth - init.welath)
+}
+outcomes <- replicate(1000, gamble(betFun))
+gamble <- function(bet.FUN, init.wealth=50, prob.win=0.52, max.turns=25) {
+current.wealth <- init.wealth
+bet <- bet.FUN(current.wealth, 0)
+games <- rbinom(max.turns, 1, prob.win)
+for (turn in 1:max.turns){
+if(games[turn]){
+current.wealth <- current.wealth + bet
+bet <- bet.FUN(current.wealth, bet)
+} else{
+current.wealth <- current.wealth - bet
+bet <- bet.FUN(current.wealth, -bet)
+}
+if(current.wealth < 0) break
+}
+return(current.wealth - init.wealth)
+}
+outcomes <- replicate(1000, gamble(betFun))
+hist(outcomes)
+for(i in 1:10){
+print(i)
+}
+alph <- letters[1:10]
+for(i in 1:10){
+temp <- alph[i]
+print(temp)
+}
+for(i in 1:10){
+temp <- alph[1:i]
+print(temp)
+}
+?rbinom
+gamble <- function(bet.FUN, init.wealth=50, prob.win=0.52, max.turns=25) {
+current.wealth <- init.wealth
+bet <- bet.FUN(current.wealth, 0)
+games <- rbinom(max.turns, 1, prob.win)
+for(turn in 1:max.turns) {
+if(games[turn]){
+current.wealth <- current.wealth + bet
+bet <- bet.FUN(current.wealth, bet)
+} else{
+current.wealth <- current.wealth - bet
+bet <- bet.FUN(current.wealth, -bet)
+}
+if(current.wealth < 0) break
+}
+return(current.wealth - init.wealth)
+}
+gamble(mean)
+betFun <- function(current.wealth,  previous.winnings=NA) {
+# your code here
+bet <- 0.05 * current.wealth
+bet <- max(bet, 0)
+return(min(bet, current.wealth))
+}
+gamble(betFun)
+outcomes <- replicate(1000, gamble(betFun))
+hist(outcomes)
+mean(outcomes)
+for(i in 1:10){}
+for(i in 1:10){
+print(i)
+}
+alph <- letters[1:10]
+for(i in 1:10){
+temp <- alph[1:i]
+print(temp)
+alph <- letters[1:10]
+for(i in 1:10){
+temp <- alph[1:i]
+print(temp)
+}
+?rbinom
+source('~/src/stat133/classwork/section5/gamble.r')
+gamble(betFun)
+outcomes <- replicate(1000, gamble(betFun))
+hist(outcomes)
+mean(outcomes)
+numFactors <- function(data) {
+facts <- sapply(data, function(col) is.factor(col))
+return(sum(facts))
+}
+numFactors(iris)
+summary(iris)
+numFactors2 <- function(lst) {
+facts <- sapply(lst, function(el) numFactors(el))
+return(sum(facts))
+}
+temp <- list()
+temp[[1]] <- iris
+temp[[2]] <- iris
+numFactors2(temp)
+sumNA <- function(data) {
+na.vals <- is.na(data)
+row.na <- rowSums(na.vals)
+col.na <- colSums(na.vals)
+total.na <- sum(na.vals)
+return(c(row.na, col.na, total.na))
+}
+temp <- matrix(1:25, ncol=5)
+temp[1,1]<- NA
+temp[1,4]<-Na
+temp[1,4]<-NA
+temp
+sumNA(temp)
+sumNA <- function(data) {
+na.vals <- is.na(data)
+row.na <- rowSums(na.vals)
+col.na <- colSums(na.vals)
+total.na <- sum(na.vals)
+return(list(row.na, col.na, total.na))
+}
+sumNA(temp)
+dim(iris)
+dim(iris)[1]
+dim(iris)[2]
+nrow(iris)
+ncol(iris)
+npRatio <- function(data) {
+#your code here
+ratio <- dim(data)[1] / dim(data)[2]
+return(ratio)
+}
+npRatio(iris)
+iris[,'Species']
+temp <- iris[,'Species']
+temp
+temp <- iris[,'species']
+getClass <- function(data) {
+var.class <- sapply(data, function(col) class(col))
+return(var.class)
+}
+getClass(iris)
+temp <- iris['Species']
+temp
+class(temp)
+temp <- iris[['Species']]
+class(temp)
+temp <- iris[,'Species']
+class(temp)
+3 %% 2
+evenCalc <- function(x) {
+if(x%%2 == 0){
+return(2*x)
+}else{
+return(3*x)
+}
+}
+evenCalc(4)
+evenCalc(3)
+my.vector%%2
+my.vector <- c(1, 3, 4, 6, 5, 9, 10)
+my.vector%%2
+my.vector%%2 == 0
+evenCalc(my.vector)
+sapply(my.vector, function(el) evenCalc(el))
+sapply(my.vector, function(el){
+if(el%%2 == 0){
+return(2*el)
+}else{
+return(3*el)
+}
+})
+numFactors <- function(data){
+facts <- sapply(data, function(col) is.factor(col))
+return(sum(facts))
+}
+numFactors(iris)
+summary(iris)
+temp <- matrix(1:25, ncol=5)
+temp
+temp[1, 1] <- NA
+temp[1, 4] <- NA
+temp
+is.na(temp)
+sumNA <- function(data){
+na.vals <- is.na(data)
+col.na <- colSums(na.vals)
+row.na <- rowSums(na.vals)
+total.na <- sum(na.vals)
+return(c(col.na, row.na, total.na))
+}
+sumNA(temp)
+sumNA <- function(data){
+na.vals <- is.na(data)
+col.na <- colSums(na.vals)
+row.na <- rowSums(na.vals)
+total.na <- sum(na.vals)
+return(list(col.na, row.na, total.na))
+}
+sumNA(temp)
+?read.csv
+x1 <- rnorm(100)
+x2 <- rnorm(100)
+t.test(x1, x2)
+?t.test
+numFactors <- function(data) {
+facts <- sapply(data, function(col) is.factor)
+return(sum(facts))
+}
+numFactors(iris)
+numFactors <- function(data) {
+facts <- sapply(data, function(col) is.factor(col))
+return(sum(facts))
+}
+numFactors(iris)
+summary(iris)
+sumNA <- function(data) {
+na.mat <- is.na(data)
+row.na <- rowSums(na.mat)
+col.na <- colSums(na.mat)
+total.na <- sum(na.mat)
+return(c(row.na, col.na, total.na))
+}
+temp <- matrix(1:25, ncol=5)
+temp[1, 1] <- NA
+temp[1, 4] <- NA
+temp
+sumNA(temp)
+sumNA <- function(data) {
+na.mat <- is.na(data)
+row.na <- rowSums(na.mat)
+col.na <- colSums(na.mat)
+total.na <- sum(na.mat)
+return(list(row.na, col.na, total.na))
+}
+sumNA(temp)
+x <- seq(2, 20, by=2)
+## In one R command, create a variable [[ y ]] which is a vector and has
+## all the odd numbers between -1 and -19, in decreasing order
+y <- seq(-1, -19, by=-2)
+## In one R command, create a variable [[ z ]] which is a vector and has
+## the numbers 1 through 5, each repeated 4 times, in order (so 1 1 1 1 2 2 2 2 etc.)
+z <- rep(1:5, each=4)
+x <- seq(2, 20, by=2)
+## In one R command, create a variable [[ y ]] which is a vector and has
+## all the odd numbers between -1 and -19, in decreasing order
+y <- seq(-1, -19, by=-2)
+## In one R command, create a variable [[ z ]] which is a vector and has
+## the numbers 1 through 5, each repeated 4 times, in order (so 1 1 1 1 2 2 2 2 etc.)
+z <- rep(1:5, each=4)
+x <- seq(2, 20, by=2)
+## In one R command, create a variable [[ y ]] which is a vector and has
+## all the odd numbers between -1 and -19, in decreasing order
+y <- seq(-1, -19, by=-2, lasd)
+## In one R command, create a variable [[ z ]] which is a vector and has
+## the numbers 1 through 5, each repeated 4 times, in order (so 1 1 1 1 2 2 2 2 etc.)
+z <- rep(1:5, each=4)
+x <- seq(2, 20, by=2)
+## In one R command, create a variable [[ y ]] which is a vector and has
+## all the odd numbers between -1 and -19, in decreasing order
+y <- seq(-1, -19, by=-2, lasd)
+x <- seq(2, 20, by=2)
+## In one R command, create a variable [[ y ]] which is a vector and has
+## all the odd numbers between -1 and -19, in decreasing order
+#y <- seq(-1, -19, by=-2, lasd)
+## In one R command, create a variable [[ z ]] which is a vector and has
+## the numbers 1 through 5, each repeated 4 times, in order (so 1 1 1 1 2 2 2 2 etc.)
+z <- rep(1:5, each=4)
+rollDice <- function(n.dice) {
+rolls <- sample(1:6, n.dice, replace=T)
+return(sum(rolls))
+}
+n.sims <- 10000
+score <- rep(0, n.sims)
+for(i in 1:n.sims) {
+roll.score <- roll.dice(2)
+score[i] <- roll.score
+if(roll.score==11) score[i] <- 0
+}
+rollDice <- function(n.dice) {
+rolls <- sample(1:6, n.dice, replace=T)
+return(sum(rolls))
+}
+n.sims <- 10000
+score <- rep(0, n.sims)
+for(i in 1:n.sims) {
+roll.score <- rollDice(2)
+score[i] <- roll.score
+if(roll.score==11) score[i] <- 0
+}
+mean(score)
+iris
+head(iris)
+means <- sapply(1:nrow(iris), function(idx){
+temp.data <- iris[-idx,]
+mean(temp.data$Petal.Width)
+})
+means
+ASKcals
+rnorm(100})
+{x}
+**5) Consider a dataframe of the same form as in the previous problem. Now
+# In-class preliminary exploration of the redwood data for lab1.
+library(ggplot2)
+library(dplyr)
+library(reshape2)
+# Load the data.
+setwd("../data/")
+log <- read.csv('sonoma-data-log.csv',header=T)
+net <- read.csv('sonoma-data-net.csv',header=T)
+all <- read.csv('sonoma-data-all.csv', header=T)
+locs <- read.table('mote-location-data.txt', header=T)
+clear
+clc
+# In-class preliminary exploration of the redwood data for lab1.
+library(ggplot2)
+library(dplyr)
+library(reshape2)
+# Load the data.
+setwd("../data/")
+log <- read.csv('sonoma-data-log.csv',header=T)
+net <- read.csv('sonoma-data-net.csv',header=T)
+all <- read.csv('sonoma-data-all.csv', header=T)
+locs <- read.table('mote-location-data.txt', header=T)
+setwd('~/src/stat215A/gsi/lab1/discussion/')
+# Load the data.
+setwd("../data/")
+log <- read.csv('sonoma-data-log.csv',header=T)
+net <- read.csv('sonoma-data-net.csv',header=T)
+all <- read.csv('sonoma-data-all.csv', header=T)
+locs <- read.table('mote-location-data.txt', header=T)
+locs
+log.indices <- sample(nrow(log), 10000, replace=F)
+ggplot(log[log.indices, ]) + geom_point(aes(x=humidity, y=humid_temp))
+# hamatop vs hamabot
+ggplot(log[log.indices, ]) + geom_point(aes(x=hamatop, y=hamabot))
+# hamatop vs temperature, humidity as color.
+ggplot(log[log.indices, ]) + geom_point(aes(x=hamatop, y=humid_temp,
+color=humidity))
+# add transparency
+ggplot(log[log.indices, ]) + geom_point(aes(x=hamatop, y=humid_temp,
+color=humidity), alpha=1/5)
+group_by(log, nodeid) %>% summarize(n())
+ggplot(filter(log, nodeid == 105)) + geom_point(aes(x=epoch, y=humid_temp))
+install.packages('Rcpp')
+install.packages("Rcpp")
+# In-class preliminary exploration of the redwood data for lab1.
+library(ggplot2)
+library(dplyr)
+library(reshape2)
+group_by(log, nodeid) %>% summarize(n())
+ggplot(filter(log, nodeid == 105)) + geom_point(aes(x=epoch, y=humid_temp))
+# A little fancier.
+Normalize <- function(x) {
+return((x - min(x)) / (max(x) - min(x)))
+}
+node.melt <- melt(filter(log, nodeid == 105) %>%
+select(epoch, voltage, humidity, humid_temp) %>%
+mutate(voltage = Normalize(voltage),
+humidity = Normalize(humidity),
+humid_temp = Normalize(humid_temp)),
+id="epoch")
+ggplot(node.melt) + geom_point(aes(x=epoch, y=value)) + facet_grid(~ variable)
+?melt
+ggplot(node.melt) + geom_point(aes(x=epoch, y=value)) + facet_grid(~ variable)
+?%>%
+temp <- group_by(net, nodeid, epoch)
+temp
+net.multiplicity <- group_by(net, nodeid, epoch) %>% summarise(n=n())
+?summarise
+head(node.melt)
+?melt
+sum(!is.numeric(net$nodeid))
+sum(!is.numeric(net$epoch))
+sum(!is.numeric(log$nodeid))
+sum(!is.numeric(log$epoch))
+summary(net)
+net.multiplicity <- group_by(net, nodeid, epoch) %>% summarise(n=n()) %>%
+ungroup() %>% group_by(n) %>% summarise(total=n())
+net.multiplicity
+net.multiplicity <- group_by(net, nodeid, epoch) %>% summarise(n=n())
+net.multiplicity
+net.multiplicity <- group_by(net, nodeid, epoch) %>% summarise(n=n()) %>%
+ungroup()
+net.multiplicity
+net.multiplicity <- group_by(net, nodeid, epoch)
+net.multiplicity
+dim(net)
+114*980
+net.multiplicity <- group_by(net, nodeid, epoch) %>% summarise(n=n())
+net.multiplicity
+net.multiplicity <- group_by(net, nodeid, epoch) %>% summarise(n=10)
+net.multiplicity
+net.multiplicity <- group_by(net, nodeid, epoch) %>% summarise(n=n())
+net.multiplicity
+net.multiplicity <- group_by(net, nodeid, epoch) %>% summarise(n=n()) %>%
+ungroup() %>% group_by(n) %>% summarise(total=n())
+net.multiplicity
+nrow(net)
+sum(net.multiplicity$total * net.multiplicity$n)
+net$row.id <- 1:nrow(net)
+log$row.id <- 1:nrow(log)
+net$row.id
+nrow(net)
+sum(net.multiplicity$total * net.multiplicity$n)
+net.node.epoch.matches <- left_join(select(net, nodeid, epoch, row.id),
+select(log, nodeid, epoch, row.id),
+by=c("nodeid", "epoch"))
+net.node.epoch.matches
+head(net.node.epoch.matches)
+nrow(unique(net.node.epoch.matches[c("nodeid", "epoch")])) / nrow(net)
+system.time(
+node.epoch.matches <- inner_join(select(net, nodeid, epoch, row.id),
+select(log, nodeid, epoch, row.id),
+by=c("nodeid", "epoch")))
+system.time(
+merged <- merge(net[c("nodeid", "epoch")], log[c("nodeid", "epoch")],
+by=c("nodeid", "epoch")))
+node.epoch.matches <- inner_join(select(net, nodeid, epoch, row.id),
+select(log, nodeid, epoch, row.id),
+by=c("nodeid", "epoch"))
+head(node.epoch.matches)
+nrow(unique(node.epoch.matches[c("nodeid", "epoch")])) / nrow(net)
+nrow(unique(node.epoch.matches[c("nodeid", "epoch")])) / nrow(log)
+nrow(log)
+nrow(net)
+select(net, nodeid, epoch, row.id)
+temp <- select(net, nodeid, epoch, row.id)
+head(temp)
+head(node.epoch.matches)
+dim(node.epoch.matches)
+nrow(unique(node.epoch.matches[c("nodeid", "epoch")])) / nrow(net)
+nrow(unique(node.epoch.matches[c("nodeid", "epoch")])) / nrow(log)
+net.node.epoch.matches <- left_join(select(net, nodeid, epoch, row.id),
+select(log, nodeid, epoch, row.id),
+by=c("nodeid", "epoch"))
+nrow(unique(net.node.epoch.matches[c("nodeid", "epoch")])) / nrow(net)
+dim(net.node.epoch.matches)
+dim(net)
+dim(log)
+dim(node.epoch.matches)
+?match
+match(c(1,2),rbind(c(1,2),c(2,3)))
+rbind(c(1,2),c(2,3))
+head(node.epoch.matches)
+nrow(unique(node.epoch.matches[c("nodeid", "epoch")])) / nrow(net)
+net[1,]
+log[197669,]
+size(node.epoch.matches)
+dim(node.epoch.matches)
+nrow(unique(node.epoch.matches[c("nodeid", "epoch")])) / nrow(net)
+net.node.epoch.matches <- left_join(select(net, nodeid, epoch, row.id),
+select(log, nodeid, epoch, row.id),
+by=c("nodeid", "epoch"))
+dim(net.node.epoch.matches)
+dim(net)
+head(net.node.epoch.matches)
+unique(net.node.epoch.matches[c("nodeid", "epoch")])
+dim(unique(net.node.epoch.matches[c("nodeid", "epoch")]))
+nrow(unique(net.node.epoch.matches[c("nodeid", "epoch")])) / nrow(net)
+?fmatch
+temp <- match(1:10,1:100)
+temp
+temp <- match(1:100,1:10)
+temp
+temp <- iris
+temp2 <- rbind(iris,iris[iris$Species=='Setosa',])
+idcs <- rep(1:5,10)
+length(idcs)
+idcs <- rep(1:5,30)
+temp <- cbind(iris,idcs)
+temp2 <- rbind(temp,temp[temp$Species=='Setosa',])
+temp
+superheroes <-
+c("    name, alignment, gender,         publisher",
+" Magneto,       bad,   male,            Marvel",
+"   Storm,      good, female,            Marvel",
+"Mystique,       bad, female,            Marvel",
+"  Batman,      good,   male,                DC",
+"   Joker,       bad,   male,                DC",
+"Catwoman,       bad, female,                DC",
+" Hellboy,      good,   male, Dark Horse Comics")
+superheroes
+dim(node.epoch.matches)
+dim(net.node.epoch.matches)
+nrow(unique(node.epoch.matches[c("nodeid", "epoch")]))
+nrow(unique(node.epoch.matches[c("nodeid", "epoch")]))
+nrow(unique(net.node.epoch.matches[c("nodeid", "epoch")]))
+net.multiplicity
+86142+14068+230+3
