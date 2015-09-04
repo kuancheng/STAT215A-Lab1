@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+% for more on knitr see excellent documentation at:
+% http://yihui.name/knitr/
+% http://yihui.name/knitr/demo/minimal/
+% http://yihui.name/knitr/optionsg
+% ...as well as the manual knitr-manual.pdf, saved in this directory.
+
+<<read_library, cache=FALSE, echo=FALSE, message=FALSE>>=
+library(knitr)
+library(ggplot2)
+library(dplyr)
+options(warn=0)
+
+setwd("./")
+source("normal_point_mixture_lib.R")
+source("kernel_density_lib_0.R")
+opts_chunk$set(fig.width=7, fig.height=3, fig.pos='h!', fig.align='center',
+  echo=FALSE, message=FALSE)
+@
+
+<<generate_data, cache=FALSE, echo=FALSE>>=
+set.seed(47)
+n <- 5e3
+x <- seq(-3, 3, length.out=3000)
+p.1  <- rep(0.5, 2)
+means.1 <- c(-1, 1)
+sds.1 <- rep(0.4, 2)
+data1 <- NormalPointMixtureDraws(n, p=p.1, means=means.1, sds=sds.1)
+pdf1 <- NormalPointMixtureDensity(x=x, p=p.1, mean=means.1, sds=sds.1)
+@
+
+\title{Kernel Density Estimators}
+\author{...your name here...}
+\maketitle
+
+In this lab, we will be exploring the performance of kernel estimators on the
+distribution shown in figure \ref{fig:plot_raw_data}. What follows is a brief
+introduction to kernel density estimators. If you are familiar with KDEs, feel
+free to skip ahead to the tasks.
+
+\subsection*{Kernel Density Estimators}
+Suppose that we have $(X_1,...X_n)$ drawn iid from some distribution with
+unknown density $f$. We will assume that $X_i \in \mathbb{R}$ to keep things
+simple. Further suppose that we wish to estimate $f$ at the point $x$. One
+natural estimator might be
+
+\begin{equation*}
+\hat{f}(x) = \frac{\# X_i \in \mathcal{N}_{\lambda}(x)}{n\lambda}
+\end{equation*}
+
+where $\mathcal{N}(x)$ is some neighborhood about $x$ of width $\lambda$.
+Repeating over a range of $x$ gives us an idea as to the shape of $f$. We can
+get a smoother estimator using a kernel function $K(\cdot)$. A kernel function
+$K:\mathbb{R}\rightarrow\mathbb{R}$ is any function that satisfies
+$\int_{\mathbb{R}}K(u)du=1$. Typically, one also chooses $K$ to be symmetric.
+Some popular choices of kernels include the ``box kernel": $K(u) = 1\{ |u| \le
+0.5\}$, the ``Gaussian kernel": $K(u) = \phi(u)$ where $\phi(\cdot)$ is the
+standard normal density, and the ``cosine kernel": $K(u) = \frac{\pi}{4}
+\cos\left( \frac{\pi}{2} u \right) \cdot 1\{ |u| \le 1 \}$. The kernel density
+estimator of $f$ at the point $x$ is then given by
+
+\begin{equation*}
+\hat{f}(x) = \frac{1}{n} \sum_i K_{\lambda}(X_0-x) 
+           = \frac{1}{n\lambda} \sum_i K\left( \frac{X_0-x}{\lambda} \right).
+\end{equation*}
+
+Note that we have incorporated the notion of neighborhood ``width" into our
+estimator by using a scaled kernel $K_{\lambda}(u)=\frac{1}{\lambda} K\left(
+\frac{u}{\lambda} \right)$. Intuitively, $\lambda$ governs how well our estimate
+$\hat{f}$ fits a specific sample. Smaller values of $\lambda$ allow for an
+estimate that fits a specific dataset well, but result in estimates that are
+more variable across new samples $(X_1',...X_n')$ drawn from the same
+distribution. This tradeoff between producing both estimates that are accurate
+for a sepcific sample and consistent over new samples is known as the bias
+variance tradeoff. You will explore this tradeoff below.  
+
+<<plot_raw_data, fig.cap="Raw data from a point mixture of normals">>=
+ggplot() +
+  geom_histogram(aes(x=data1, y=..density..), fill=NA, color="blue") +
+  geom_line(aes(x=x, y=pdf1), lwd=2)
+@
+
+\subsection*{Tasks}
+
+For all tasks, include a little text in this document about what you are doing.
+When you're done, you'll have an R library and knitted pdf document.
+
+\begin{enumerate}
+\item Complete the Kernel function and plot it.
+
+\item Complete the EstimateDensity function and try fitting it to
+your data with some different bandwidhts.
+
+\item Explore how the bias and variance changes as a function of the
+bandwidth using the PerformSimulations function.
+\end{enumerate}
+
+\end{document}
