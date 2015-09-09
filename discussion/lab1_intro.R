@@ -61,13 +61,13 @@ Normalize <- function(x) {
   return((x - min(x)) / (max(x) - min(x))) 
 }
 
-node.melt <- melt(filter(log, nodeid == 105) %>%
+melt_node <- melt(filter(log, nodeid == 105) %>%
                   select(epoch, voltage, humidity, humid_temp) %>%
                   mutate(voltage = Normalize(voltage),
                          humidity = Normalize(humidity),
                          humid_temp = Normalize(humid_temp)),
                   id="epoch")
-ggplot(node.melt) + geom_point(aes(x=epoch, y=value)) + facet_grid(~ variable)
+ggplot(melt_node) + geom_point(aes(x=epoch, y=value)) + facet_grid(variable~.)
 
 # Take some class time to explore.
 
